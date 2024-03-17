@@ -3,7 +3,9 @@ import type * as Party from "partykit/server";
 export default class Server implements Party.Server {
   count = 0;
 
-  constructor(readonly room: Party.Room) {}
+  constructor(readonly room: Party.Room) {
+    console.log("Server constructor.  Room: ", room.id)
+  }
 
   onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
     // A websocket just connected!

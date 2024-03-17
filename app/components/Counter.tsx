@@ -1,24 +1,5 @@
-import { useState } from "react";
-import PartySocket from "partysocket";
 import usePartySocket from "partysocket/react";
-
-// We're not using server-side rendering and initial props in this
-// example (our app is client-side only), so loadInitialCount is not
-// used. But if we were using SSR, we would use this function to load
-// the initial count, as returned by onRequest in `party/server.ts`.
-export async function loadInitialCount(host: string) {
-    const initialCount = await PartySocket.fetch(
-        {
-            host,
-            party: "counter",
-            room: "index",
-        },
-        {
-            method: "GET",
-        }
-    ).then((res) => res.text());
-    return parseInt(initialCount) || 0;
-}
+import { useState } from "react";
 
 export default function Counter() {
     const [count, setCount] = useState<number | null>(null);
@@ -40,19 +21,8 @@ export default function Counter() {
         socket.send("increment");
     };
 
-    const styles = {
-        backgroundColor: "#ff0f0f",
-        borderRadius: "9999px",
-        border: "none",
-        color: "white",
-        fontSize: "0.95rem",
-        cursor: "pointer",
-        padding: "1rem 3rem",
-        margin: "1rem 0rem",
-    };
-
     return (
-        <button style={styles} onClick={increment}>
+        <button onClick={increment}>
             Increment me! {count !== null && <>Count: {count}</>}
         </button>
     );

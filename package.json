@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "partykit dev --live",
-    "deploy": "partykit deploy"
+    "deploy": "partykit deploy",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "clsx": "^2.1.0",

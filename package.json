@@ -1,25 +1,25 @@
 {
-  "name": "partykit-kamisado-game-react",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "partykit dev --live",
-    "deploy": "partykit deploy",
-    "format": "prettier --write ."
-  },
-  "dependencies": {
-    "clsx": "^2.1.0",
-    "framer-motion": "^11.0.14",
-    "immer": "^10.0.4",
-    "partysocket": "^1.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "partykit": "^0.0.100",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.2"
-  }
+    "name": "partykit-kamisado-game-react",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "partykit dev --live",
+        "deploy": "partykit deploy",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "clsx": "^2.1.0",
+        "framer-motion": "^11.0.14",
+        "immer": "^10.0.4",
+        "partysocket": "^1.0.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.66",
+        "@types/react-dom": "^18.2.22",
+        "partykit": "^0.0.100",
+        "prettier": "^3.2.5",
+        "typescript": "^5.4.2"
+    }
 }

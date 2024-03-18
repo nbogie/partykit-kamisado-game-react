@@ -56,7 +56,10 @@ function GameView({ username, roomId }: GameViewProps) {
             <div>win state: {gameState.winState.type}</div>
             <div>selection: {JSON.stringify(gameState.selection)}</div>
             <div>next flavour: {gameState.nextFlavour}</div>
-            <pre>{JSON.stringify(gameState, null, 2)}</pre>
+            <details>
+                <summary>game state</summary>
+                <pre>{JSON.stringify(gameState, null, 2)}</pre>
+            </details>
         </div>
     );
 }

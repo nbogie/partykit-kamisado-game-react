@@ -46,47 +46,48 @@ h1 {
     border-radius: 50%;
     left: 0%;
     top: 0%;
-    outline: 1rem solid #333;
+    outline: 0.9rem solid #333;
     outline-offset: -1rem;
 }
 .piece.black {
     outline-color: #333;
 }
 .piece.white {
-    outline-color: #fff;
+    outline-color: #f3f2f2;
 }
 
+/** palette mostly kgolid's curated tundra3 https://chromotome-quicker.netlify.app/ */
 .piece.yellow,
 .cell.yellow {
-    background-color: yellow;
+    background-color: #d9c67a;
 }
 .piece.orange,
 .cell.orange {
-    background-color: orange;
+    background-color: #eb7f64;
 }
 .piece.pink,
 .cell.pink {
-    background-color: pink;
+    background-color: #ca87c7;
 }
 .piece.purple,
 .cell.purple {
-    background-color: purple;
+    background-color: #7b7377;
 }
 .piece.blue,
 .cell.blue {
-    background-color: dodgerblue;
+    background-color: #87c3ca;
 }
 .piece.green,
 .cell.green {
-    background-color: green;
+    background-color: #89ca87;
 }
 .piece.red,
 .cell.red {
-    background-color: tomato;
+    background-color: #b2475d;
 }
 .piece.brown,
 .cell.brown {
-    background-color: rgb(141, 57, 27);
+    background-color: #7d3e3e;
 }
 
 .gameOverOverlay {

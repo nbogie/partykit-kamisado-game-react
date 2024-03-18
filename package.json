@@ -8,6 +8,7 @@
         "format": "prettier --write ."
     },
     "dependencies": {
+        "@jest/globals": "^29.7.0",
         "clsx": "^2.1.0",
         "framer-motion": "^11.0.14",
         "immer": "^10.0.4",

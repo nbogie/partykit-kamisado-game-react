@@ -1,7 +1,7 @@
-import { Dispatch } from "react";
-import { Cell } from "../gameCore/GameState";
+import { type Dispatch } from "react";
+import { type Cell } from "../gameCore/GameState";
 import { PieceC } from "./PieceC";
-import { Action } from "../gameCore/reducerFunction";
+import { type GameAction } from "../gameCore/reducerFunction";
 
 export function CellC({
     cell,
@@ -10,7 +10,7 @@ export function CellC({
 }: {
     cell: Cell;
     isCellForNextPlay: boolean;
-    dispatch: Dispatch<Action>;
+    dispatch: Dispatch<GameAction>;
 }) {
     return (
         <div

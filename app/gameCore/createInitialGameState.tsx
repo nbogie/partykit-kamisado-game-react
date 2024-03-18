@@ -1,5 +1,5 @@
 import { createInitialGrid } from "./createInitialGrid";
-import { GameState } from "./GameState";
+import { type GameState } from "./GameState";
 
 export function createInitialGameState(): GameState {
     return {
@@ -8,6 +8,8 @@ export function createInitialGameState(): GameState {
         selection: { from: null, to: null },
         nextFlavour: null,
         winState: { type: "in-play" },
+        users: [],
+        log: [],
         // winState: { type: "won", winner: "black" },
     };
 }

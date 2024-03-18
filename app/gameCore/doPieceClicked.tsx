@@ -1,5 +1,5 @@
 import {
-    GameState,
+    type GameState,
     cellAt,
     clearSelection,
     flipWhoseTurn,
@@ -9,7 +9,7 @@ import {
     selectionIsComplete,
 } from "./GameState";
 import { isOnLine } from "./position";
-import { ClickedAction } from "./reducerFunction";
+import { type ClickedAction } from "./reducerFunction";
 
 export function doPieceClicked(gs: GameState, action: ClickedAction) {
     if (!gs.selection.from) {

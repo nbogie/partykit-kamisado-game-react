@@ -1,20 +1,46 @@
-import { GameState } from "./GameState";
+import { produce } from "immer";
+import { addLogMutating, type GameState, type ServerAction } from "./GameState";
 import { createInitialGameState } from "./createInitialGameState";
 import { doPieceClicked } from "./doPieceClicked";
-import { Position } from "./position";
+import { type Position } from "./position";
 
-export type Action = ClickedAction | RestartAction;
+export type GameAction = ClickedAction | RestartAction;
 export type ClickedAction = { type: "clicked"; pos: Position };
 export type RestartAction = { type: "restart" };
 
-export function reducerFunction(gs: GameState, action: Action) {
+export function reduceWithImmer(
+    baseState: GameState,
+    action: ServerAction
+): GameState {
+    const nextState = produce(baseState, (draft) => {
+        reducerFunction(draft, action);
+    });
+    return nextState;
+}
+
+export function reducerFunction(gs: GameState, action: ServerAction) {
     switch (action.type) {
         case "clicked": {
             doPieceClicked(gs, action);
-            break;
+            addLogMutating("Piece clicked ", gs.log);
+            return;
         }
         case "restart": {
-            return createInitialGameState();
+            createInitialGameState();
+            addLogMutating("Restarted ", gs.log);
+            return;
+        }
+        case "UserEntered": {
+            if (gs.users.length < 2) {
+                gs.users.push(action.user);
+                addLogMutating("User joined " + action.user.id, gs.log);
+            }
+            return;
+        }
+        case "UserExited": {
+            createInitialGameState();
+            addLogMutating("User left " + action.user.id, gs.log);
+            return;
         }
         default:
             throw new UnreachableCaseError(action);

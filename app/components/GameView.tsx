@@ -1,18 +1,24 @@
-import { useImmerReducer } from "use-immer";
 import { calcCellForNextPlay } from "../gameCore/GameState";
-import { createInitialGameState } from "../gameCore/createInitialGameState";
 import { positionToString } from "../gameCore/createInitialGrid";
-import { reducerFunction } from "../gameCore/reducerFunction";
-import "./Game.css";
-import { CellC } from "./CellC";
-import { GameOverOverlay } from "./GameOverOverlay";
 import { areSamePosition } from "../gameCore/position";
+import { useGameRoom } from "../hooks/useGameRoom";
+import { CellC } from "./CellC";
+import "./Game.css";
+import { GameOverOverlay } from "./GameOverOverlay";
 
-function Game() {
-    const [gameState, dispatch] = useImmerReducer(
-        reducerFunction,
-        createInitialGameState()
-    );
+interface GameViewProps {
+    username: string;
+    roomId: string;
+}
+
+function GameView({ username, roomId }: GameViewProps) {
+    const { gameState, dispatch } = useGameRoom(username, roomId);
+
+    // Indicated that the game is loading
+    if (gameState === null) {
+        return <p>Waiting for server...</p>;
+    }
+
     const cellForNextPlay = calcCellForNextPlay(gameState);
 
     return (
@@ -50,8 +56,9 @@ function Game() {
             <div>win state: {gameState.winState.type}</div>
             <div>selection: {JSON.stringify(gameState.selection)}</div>
             <div>next flavour: {gameState.nextFlavour}</div>
+            <pre>{JSON.stringify(gameState, null, 2)}</pre>
         </div>
     );
 }
 
-export default Game;
+export default GameView;

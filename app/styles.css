@@ -29,3 +29,16 @@ h6 {
 #app {
     padding: 1rem;
 }
+
+input,
+button,
+select {
+    font: inherit;
+    padding: 0.3rem;
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}

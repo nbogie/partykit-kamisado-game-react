@@ -1,7 +1,22 @@
 import { positionToString } from "./createInitialGrid";
-import { Position, generateAllPositionsBetween } from "./position";
+import { type Position, generateAllPositionsBetween } from "./position";
+import type { GameAction } from "./reducerFunction";
 
-export interface GameState {
+// If there is anything you want to track for a specific user, change this interface
+export interface User {
+    id: string;
+}
+
+// Do not change this! Every game has a list of users and log of actions
+interface BaseGameState {
+    users: User[];
+    log: {
+        dt: number;
+        message: string;
+    }[];
+}
+
+export interface GameState extends BaseGameState {
     winState: { type: "in-play" } | { type: "won"; winner: PlayerColour };
     nextFlavour: Flavour | null;
     whoseTurn: PlayerColour;
@@ -82,6 +97,7 @@ export function isPathBlocked(from: Position, to: Position, gs: GameState) {
 }
 
 export function allCells(gameState: GameState): Cell[] {
+    console.log({ gameState });
     return gameState.grid.rows.flatMap((row) => row);
 }
 export function calcCellForNextPlay(gameState: GameState): Cell | null {
@@ -94,3 +110,20 @@ export function calcCellForNextPlay(gameState: GameState): Cell | null {
 
     return cell ?? null;
 }
+
+export type ServerAction = WithUser<DefaultAction> | WithUser<GameAction>;
+
+// Do not change!
+export type Action = DefaultAction | GameAction;
+
+export function addLogMutating(message: string, logs: GameState["log"]): void {
+    logs.push({ dt: new Date().getTime(), message: message });
+    const MAX_LOG_LENGTH = 3;
+    if (logs.length > MAX_LOG_LENGTH) {
+        logs.splice(0, logs.length - MAX_LOG_LENGTH);
+    }
+}
+
+type WithUser<T> = T & { user: User };
+
+export type DefaultAction = { type: "UserEntered" } | { type: "UserExited" };

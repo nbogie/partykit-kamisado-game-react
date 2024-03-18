@@ -1,51 +1,64 @@
 import type * as Party from "partykit/server";
+import type { GameState, ServerAction } from "../app/gameCore/GameState";
+import { createInitialGameState } from "../app/gameCore/createInitialGameState";
+import { produce } from "immer";
+import {
+    reducerFunction,
+    type GameAction,
+    reduceWithImmer,
+} from "../app/gameCore/reducerFunction";
+
+interface ServerMessage {
+    state: GameState;
+}
 
 export default class Server implements Party.Server {
-    count = 0;
-
+    private gameState: GameState;
     constructor(readonly room: Party.Room) {
+        this.gameState = createInitialGameState();
         console.log("Server constructor.  Room: ", room.id);
     }
 
     onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
-        // A websocket just connected!
         console.log(
-            `Connected:
-  id: ${conn.id}
-  room: ${this.room.id}
-  url: ${new URL(ctx.request.url).pathname}`
+            `Connected: id: ${conn.id} room: ${this.room.id} url: ${new URL(ctx.request.url).pathname}`
         );
 
-        // send the current count to the new client
-        conn.send(this.count.toString());
+        this.gameState = reduceWithImmer(this.gameState, {
+            type: "UserEntered",
+            user: { id: conn.id },
+        });
+
+        this.room.broadcast(JSON.stringify({ state: this.gameState }));
+    }
+    onClose(connection: Party.Connection) {
+        console.log("Connection closed: ", connection.id);
+
+        this.gameState.reduceWithImmer(this.gameState, {
+            type: "UserExited",
+            user: { id: connection.id },
+        });
+
+        //TODO: stop/pause game until player returns - record that player has left in state.
     }
 
     onMessage(message: string, sender: Party.Connection) {
-        // let's log the message
         console.log(`connection ${sender.id} sent message: ${message}`);
-        // we could use a more sophisticated protocol here, such as JSON
-        // in the message data, but for simplicity we just use a string
-        if (message === "increment") {
-            this.increment();
-        }
-    }
 
-    onRequest(req: Party.Request) {
-        // response to any HTTP request (any method, any path) with the current
-        // count. This allows us to use SSR to give components an initial value
+        //TODO: validate
+        const action = JSON.parse(message) as GameAction;
 
-        // if the request is a POST, increment the count
-        if (req.method === "POST") {
-            this.increment();
-        }
+        //attach the user that sent it.
+        const serverAction = {
+            ...action,
+            user: { id: sender.id },
+        } as ServerAction;
 
-        return new Response(this.count.toString());
-    }
+        this.gameState = reduceWithImmer(this.gameState, serverAction);
 
-    increment() {
-        this.count = (this.count + 1) % 100;
-        // broadcast the new count to all clients
-        this.room.broadcast(this.count.toString(), []);
+        const objectToSend = { state: this.gameState };
+        // console.log("Sending state: ", JSON.stringify(objectToSend, null, 2));
+        this.room.broadcast(JSON.stringify(objectToSend));
     }
 }
 

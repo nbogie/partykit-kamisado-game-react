@@ -1,5 +1,11 @@
-import { Cell, Flavour, Grid, Piece, PlayerColour } from "./GameState";
-import { Position } from "./position";
+import {
+    type Cell,
+    type Flavour,
+    type Grid,
+    type Piece,
+    type PlayerColour,
+} from "./GameState";
+import { type Position } from "./position";
 
 export function createInitialGrid(): Grid {
     const rows = [];

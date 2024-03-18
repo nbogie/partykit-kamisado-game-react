@@ -1,12 +1,12 @@
-import { GameState } from "../gameCore/GameState";
-import { Action } from "../gameCore/reducerFunction";
+import { type GameState } from "../gameCore/GameState";
+import { type GameAction } from "../gameCore/reducerFunction";
 
 export function GameOverOverlay({
     gameState,
     dispatch,
 }: {
     gameState: GameState;
-    dispatch: React.Dispatch<Action>;
+    dispatch: React.Dispatch<GameAction>;
 }) {
     if (gameState.winState.type === "won") {
         return (

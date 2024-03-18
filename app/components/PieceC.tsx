@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Piece } from "../gameCore/GameState";
+import { type Piece } from "../gameCore/GameState";
 
 export function PieceC({ piece }: { piece: Piece }) {
     return (

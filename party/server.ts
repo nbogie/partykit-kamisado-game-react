@@ -34,7 +34,7 @@ export default class Server implements Party.Server {
     onClose(connection: Party.Connection) {
         console.log("Connection closed: ", connection.id);
 
-        this.gameState.reduceWithImmer(this.gameState, {
+        this.gameState = reduceWithImmer(this.gameState, {
             type: "UserExited",
             user: { id: connection.id },
         });

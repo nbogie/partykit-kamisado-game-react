@@ -13,7 +13,7 @@ export function reduceWithImmer(
     action: ServerAction
 ): GameState {
     const nextState = produce(baseState, (draft) => {
-        reducerFunction(draft, action);
+        return reducerFunction(draft, action);
     });
     return nextState;
 }
@@ -26,9 +26,9 @@ export function reducerFunction(gs: GameState, action: ServerAction) {
             return;
         }
         case "restart": {
-            createInitialGameState();
-            addLogMutating("Restarted ", gs.log);
-            return;
+            //can't mutate gamestate here as we're returning a new object
+            // addLogMutating("Restarted ", gs.log);
+            return createInitialGameState();
         }
         case "UserEntered": {
             if (gs.users.length < 2) {

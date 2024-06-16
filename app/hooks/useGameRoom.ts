@@ -2,6 +2,12 @@ import usePartySocket from "partysocket/react";
 import { useState } from "react";
 import type { Action, GameState } from "../gameCore/GameState";
 
+/**
+ *
+ * @param username
+ * @param roomId
+ * @returns the current game state, kept up to date from the server, and a dispatch function to send reducer actions to the server
+ */
 export const useGameRoom = (username: string, roomId: string) => {
     const [gameState, setGameState] = useState<GameState | null>(null);
 

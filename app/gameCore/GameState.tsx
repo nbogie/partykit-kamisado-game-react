@@ -111,11 +111,6 @@ export function calcCellForNextPlay(gameState: GameState): Cell | null {
     return cell ?? null;
 }
 
-export type ServerAction = WithUser<DefaultAction> | WithUser<GameAction>;
-
-// Do not change!
-export type Action = DefaultAction | GameAction;
-
 export function addLogMutating(message: string, logs: GameState["log"]): void {
     logs.push({ dt: new Date().getTime(), message: message });
     const MAX_LOG_LENGTH = 3;
@@ -123,6 +118,10 @@ export function addLogMutating(message: string, logs: GameState["log"]): void {
         logs.splice(0, logs.length - MAX_LOG_LENGTH);
     }
 }
+export type ServerAction = WithUser<DefaultAction> | WithUser<GameAction>;
+
+// Do not change!
+export type Action = DefaultAction | GameAction;
 
 type WithUser<T> = T & { user: User };
 

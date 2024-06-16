@@ -1,5 +1,13 @@
 # 🎈 partykit-react-starter
 
+## Neill Notes
+
+-   visit react on 127.0.0.1 not 0.0.0.0
+
+-   [partykit+react usage pattern](https://www.notion.so/neillzero/Partykit-React-usage-pattern-7a1e155d2dd74b9abfe4cc3f465de799)
+
+## original notes
+
 Welcome to the party, pal!
 
 This is a [Partykit](https://partykit.io) project, which lets you create real-time collaborative applications with minimal coding effort.
@@ -38,6 +46,5 @@ This is achieved with the optional `serve` property in the [`partykit.json`](./p
 ## Next Steps
 
 Learn about deploying PartyKit applications in the [Deployment guide of the PartyKit docs](https://docs.partykit.io/guides/deploying-your-partykit-server/).
-
 
 test

@@ -1,5 +1,5 @@
 import { generateAllPositionsBetween } from "./position";
-import { expect, test } from "@jest/globals";
+import { expect, test } from "vitest";
 test("vertical 1a", () => {
     const result = generateAllPositionsBetween({ x: 0, y: 0 }, { x: 0, y: 7 });
     expect(result).toEqual([

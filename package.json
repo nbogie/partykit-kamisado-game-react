@@ -6,7 +6,8 @@
         "dev": "partykit dev --live",
         "deploy": "partykit deploy",
         "format": "prettier --write .",
-        "lint": "eslint app"
+        "lint": "eslint app",
+        "test": "vitest --run"
     },
     "dependencies": {
         "@jest/globals": "^29.7.0",
@@ -27,6 +28,7 @@
         "partykit": "^0.0.105",
         "prettier": "^3.2.5",
         "typescript": "^5.4.2",
-        "typescript-eslint": "^7.13.1"
+        "typescript-eslint": "^7.13.1",
+        "vitest": "^1.6.0"
     }
 }

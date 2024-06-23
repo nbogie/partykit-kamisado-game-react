@@ -37,6 +37,10 @@ h1 {
     outline: 6px solid red;
     border-radius: 0.5rem;
 }
+.cell.selected {
+    outline: 5px dashed magenta;
+    border-radius: 0.5rem;
+}
 
 .piece {
     z-index: 1;
@@ -55,7 +59,6 @@ h1 {
 .piece.white {
     outline-color: #f3f2f2;
 }
-
 /** palette mostly kgolid's curated tundra3 https://chromotome-quicker.netlify.app/ */
 .piece.yellow,
 .cell.yellow {

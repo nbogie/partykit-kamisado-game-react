@@ -46,6 +46,14 @@ function GameView({ username, roomId }: GameViewProps) {
                                     cellForNextPlay.position
                                 )
                             }
+                            isCellSelected={
+                                cell.piece !== null &&
+                                gameState.selection.from !== null &&
+                                areSamePosition(
+                                    cell.position,
+                                    gameState.selection.from
+                                )
+                            }
                             cell={cell}
                             dispatch={dispatch}
                         />

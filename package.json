@@ -7,10 +7,10 @@
         "deploy": "partykit deploy",
         "format": "prettier --write .",
         "lint": "eslint app",
-        "test": "vitest --run"
+        "test": "vitest --run",
+        "type-check": "tsc --noEmit"
     },
     "dependencies": {
-        "@jest/globals": "^29.7.0",
         "clsx": "^2.1.1",
         "framer-motion": "^11.0.14",
         "immer": "^10.0.4",

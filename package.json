@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "partykit dev --live",
         "deploy": "partykit deploy",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "lint": "eslint app"
     },
     "dependencies": {
         "@jest/globals": "^29.7.0",
@@ -17,10 +18,15 @@
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
+        "@eslint/js": "^9.5.0",
         "@types/react": "^18.2.66",
         "@types/react-dom": "^18.2.22",
+        "eslint": "8.x",
+        "eslint-plugin-react": "^7.34.3",
+        "globals": "^15.6.0",
         "partykit": "^0.0.105",
         "prettier": "^3.2.5",
-        "typescript": "^5.4.2"
+        "typescript": "^5.4.2",
+        "typescript-eslint": "^7.13.1"
     }
 }
